@@ -12,8 +12,9 @@ class NewsDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String? rawDescription = news.description! ;
-    // news.imageUrl = news.getImageUrl(rawDescription);
-    // news.description = news.getDescription(rawDescription);
+    news.imageUrl = news.getImageUrl(rawDescription);
+    news.description = news.getDescription(rawDescription);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(news.title!),
@@ -21,11 +22,16 @@ class NewsDetail extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Text(news.link!),
-            Text(news.pubDate!),
-            Text(news.title!),
+            Image.network(news.imageUrl!),
+            Align(
+              alignment: Alignment.topRight,
+              child: Text(news.pubDate!, style: TextStyle(fontSize: 15),),
+            ),
+            // Center(
+            //   child: Text(news.title!),
+            // ),
             Text(news.description!),
-            // Text(news.imageUrl!)
+
           ],
         ),
       ),

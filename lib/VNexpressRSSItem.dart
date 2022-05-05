@@ -9,7 +9,7 @@ class VNExpressRSSItem extends RSSItem {
 
   @override
   String getDescription(String rawDescription) {
-    int start = rawDescription.indexOf('<a><br>')+9;
+    int start = rawDescription.indexOf('</a></br>')+9;
     if (start > 9) {
       return rawDescription.substring(start);
     }
@@ -21,7 +21,8 @@ class VNExpressRSSItem extends RSSItem {
     int start = rawDescription.indexOf('img src="')+9;
     if (start> 9) {
       int end = rawDescription.indexOf('"', start);
-      return rawDescription.substring(end, start);
+      return rawDescription.substring(start, end);
+
     }
     return "";
   }

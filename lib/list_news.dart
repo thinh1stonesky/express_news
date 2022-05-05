@@ -1,6 +1,6 @@
 
 import 'package:express_news/VNexpressRSSItem.dart';
-import 'package:express_news/news_detail.dart';
+import 'package:express_news/news_detail_webview.dart';
 import 'package:express_news/ssr_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,24 +18,30 @@ class ListNews extends StatelessWidget {
         return GestureDetector(
           onTap: (){
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => NewsDetail(news: news),)
+              MaterialPageRoute(builder: (context) => NewsDetailWebView(news: news),)
             );
+
+            // Navigator.of(context).push(
+            //   MaterialPageRoute(builder: (context) => NewsDetail(news: news),)
+            // );
           },
-          child: Card(
-            child: Text(news.title!),
+          child: ListTile(
+            leading: Image.network(news.getImageUrl(news.description!)),
+            title: Text(news.title!),
+            subtitle: Text(news.pubDate!),
           ),
         );
       },
     );
   }
 
-  VNExpressRSSItem getExpressRSSItem( RSSItem item){
-    VNExpressRSSItem? expressRSSItemitem;
-    expressRSSItemitem!.title = item.title;
-    expressRSSItemitem.pubDate = item.pubDate;
-    expressRSSItemitem.description = item.description;
-    expressRSSItemitem.link = item.link;
-    expressRSSItemitem.imageUrl = item.imageUrl;
-    return expressRSSItemitem;
-  }
+  // VNExpressRSSItem getExpressRSSItem( RSSItem item){
+  //   VNExpressRSSItem? expressRSSItemitem;
+  //   expressRSSItemitem!.title = item.title;
+  //   expressRSSItemitem.pubDate = item.pubDate;
+  //   expressRSSItemitem.description = item.description;
+  //   expressRSSItemitem.link = item.link;
+  //   expressRSSItemitem.imageUrl = item.imageUrl;
+  //   return expressRSSItemitem;
+  // }
 }
